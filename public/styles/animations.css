@@ -1,0 +1,44 @@
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-animate {
+  background: linear-gradient(-45deg, var(--sec), #241a38, var(--sec));
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+  will-change: background-position;
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, var(--white), var(--sec));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Add loading animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.loading {
+  background: linear-gradient(90deg, 
+    var(--white-icon-tr) 25%, 
+    var(--white-icon) 50%, 
+    var(--white-icon-tr) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+} 
