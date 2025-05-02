@@ -14,7 +14,7 @@ yarn-error.log*
 pnpm-debug.log*  
 
 # firebase
-.firebase
+src/firebase.ts
 
 # environment variables
 .env
