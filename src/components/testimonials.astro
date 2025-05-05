@@ -1,0 +1,51 @@
+---
+import TestimonialsMarquee from "../React/TestimonialsMarquee";
+---
+
+<section class="text-[var(--white)] py-16 section-transition" id="testimonials">
+  <div class="max-w-5xl mx-auto space-y-8 stagger-animation">
+    <div class="text-center space-y-4 animate-fade-in">
+      <h2 class="text-4xl md:text-5xl font-medium text-pretty leading-tight animate-title">
+        What People <span class="text-[var(--sec)]">Say</span>
+      </h2>
+      <p class="text-md md:text-xl text-[var(--white-icon)] max-w-2xl mx-auto">
+        Hear what others have to say about working with me
+      </p>
+    </div>
+    
+    <div class="mt-8">
+      <TestimonialsMarquee client:visible />
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-title {
+    animation: titleReveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes titleReveal {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style> 
