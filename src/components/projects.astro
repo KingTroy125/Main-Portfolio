@@ -4,45 +4,66 @@ import App from "../../public/App.png";
 import NoteDev from "../../public/NoteDev.png";
 import CodeScreenshot from "../../public/Code-Screenshot.png";
 import Typemaster from "../../public/Typemaster.png";
+import PLS from "../../public/PLS.png";
+import DR from "../../public/Dr.png";
 
 interface Project {
   title: string;
-  image: ImageMetadata;
+  image: ImageMetadata | string;
   link: string;
   preview: string;
   status: string;
 }
 
-const projects: Project[] = [
+const personalProjects: Project[] = [
   {
     title: "NoteDev",
-    image: NoteDev as ImageMetadata,
+    image: NoteDev,
     link: "https://github.com/KingTroy125/NoteDev",
     preview: "https://note-dev-olive.vercel.app/",
     status: "In Development",
   },
   {
     title: "Fitness App: VITALMOVE",
-    image: App as ImageMetadata,
+    image: App,
     link: "https://www.behance.net/kingtroy2",
     preview: "https://www.behance.net/kingtroy2",
     status: "Contributor",
   },
   {
     title: "Code Screenshot",
-    image: CodeScreenshot as ImageMetadata,
+    image: CodeScreenshot,
     link: "https://github.com/KingTroy125/Code-Screenshot-v0",
     preview: "https://code-screenshot-v0.vercel.app/",
     status: "Developed",
   },
-   {
+  {
     title: "Final CS50 Project Typemaster game",
-    image: Typemaster as ImageMetadata,
+    image: Typemaster,
     link: "https://github.com/KingTroy125/cs50/blob/main/CS50x.pdf",
     preview: "https://typemaster-cs50.netlify.app/",
     status: "Developed",
   },
 ];
+
+const clientProjects: Project[] = [
+  {
+    title: "Power & Lighting Solution",
+    image: PLS,
+    link: "https://power-lighting-solution.vercel.app/",
+    preview: "https://power-lighting-solution.vercel.app/",
+    status: "Client Project in Development",
+  },
+  {
+    title: "Dr eV Rapiti | Medical Doctor Cape Town",
+    image: DR,
+    link: "https://www.randypet01.co.za/",
+    preview: "https://www.randypet01.co.za/",
+    status: "Client Project",
+  },
+];
+
+let currentProjects = personalProjects;
 ---
 
 <section
@@ -53,9 +74,26 @@ const projects: Project[] = [
     <h2 class="text-lg text-[var(--sec)] mb-2">My work</h2>
     <h3 class="text-4xl md:text-5xl font-medium mb-8">Projects</h3>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+    <div class="flex justify-center gap-4 mb-12">
+      <button 
+        id="projectToggle"
+        class="flex items-center gap-3 px-6 py-3 bg-[#1414149c] hover:bg-[var(--white-icon-tr)] transition-all duration-300 rounded-full border border-[var(--white-icon-tr)] hover:shadow-[0_0_15px_rgba(164,118,255,0.2)] hover-lift group"
+      >
+        <span class="text-[var(--white)] group-hover:text-[var(--sec)] transition-colors">Switch to Client Projects</span>
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="currentColor" 
+          class="w-5 h-5 text-[var(--white)] group-hover:text-[var(--sec)] transition-colors group-hover:rotate-180 transition-transform"
+        >
+          <path d="M12 15.713L18.01 9.7c.439-.439 1.151-.439 1.59 0s.439 1.151 0 1.59l-6.9 6.9c-.439.439-1.151.439-1.59 0l-6.9-6.9c-.439-.439-.439-1.151 0-1.59s1.151-.439 1.59 0L12 15.713z"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal" id="projectsGrid">
       {
-        projects.map((project) => (
+        currentProjects.map((project) => (
           <div class="group fade-in-up">
             <a
               href={project.preview}
@@ -64,11 +102,21 @@ const projects: Project[] = [
               class="block hover-card"
             >
               <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  class="w-full h-48 md:h-72 object-cover"
-                />
+                {typeof project.image === 'string' ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    class="w-full h-48 md:h-72 object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    class="w-full h-48 md:h-72 object-cover"
+                    loading="lazy"
+                  />
+                )}
               </div>
               <div class="flex items-center px-3">
                 <div class="flex-grow">
@@ -135,3 +183,154 @@ const projects: Project[] = [
     </a>
   </div>
 </section>
+
+<script>
+  const projectToggle = document.getElementById('projectToggle');
+  const projectsGrid = document.getElementById('projectsGrid');
+  let isShowingClientProjects = false;
+
+  const clientProjects = [
+    {
+      title: "Power & Lighting Solution",
+      image: "/PLS.png",
+      link: "https://power-lighting-solution.vercel.app/",
+      preview: "https://power-lighting-solution.vercel.app/",
+      status: "Client Project in Development",
+    },
+    {
+      title: "Healthcare Portal",
+      image: "/Dr.png",
+      link: "https://www.randypet01.co.za/",
+      preview: "https://www.randypet01.co.za/",
+      status: "Client Project",
+    },
+  ];
+
+  const personalProjects = [
+    {
+      title: "NoteDev",
+      image: "/NoteDev.png",
+      link: "https://github.com/KingTroy125/NoteDev",
+      preview: "https://note-dev-olive.vercel.app/",
+      status: "In Development",
+    },
+    {
+      title: "Fitness App: VITALMOVE",
+      image: "/App.png",
+      link: "https://www.behance.net/kingtroy2",
+      preview: "https://www.behance.net/kingtroy2",
+      status: "Contributor",
+    },
+    {
+      title: "Code Screenshot",
+      image: "/Code-Screenshot.png",
+      link: "https://github.com/KingTroy125/Code-Screenshot-v0",
+      preview: "https://code-screenshot-v0.vercel.app/",
+      status: "Developed",
+    },
+    {
+      title: "Final CS50 Project Typemaster game",
+      image: "/Typemaster.png",
+      link: "https://github.com/KingTroy125/cs50/blob/main/CS50x.pdf",
+      preview: "https://typemaster-cs50.netlify.app/",
+      status: "Developed",
+    },
+  ];
+
+  function updateProjects(projects) {
+    projectsGrid.innerHTML = projects.map(project => `
+      <div class="group fade-in-up">
+        <a
+          href="${project.preview}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block hover-card"
+        >
+          <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
+            <img
+              src="${project.image}"
+              alt="${project.title}"
+              class="w-full h-48 md:h-72 object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div class="flex items-center px-3">
+            <div class="flex-grow">
+              <h4 class="text-2xl font-semibold">${project.title}</h4>
+              <span class="py-1 text-sm text-[var(--white-icon)]">
+                ${project.status}
+              </span>
+            </div>
+            <div class="flex gap-2 ml-auto">
+              <a
+                target="_blank"
+                href="${project.link}"
+                aria-label="GitHub"
+                class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-7"
+                >
+                  <path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z" />
+                </svg>
+              </a>
+              <a
+                target="_blank"
+                href="${project.preview}"
+                aria-label="Preview"
+                class="size-14 flex justify-center items-center text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-1 border-[var(--white-icon-tr)] p-3 rounded-xl bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="size-7"
+                >
+                  <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </a>
+      </div>
+    `).join('');
+  }
+
+  projectToggle.addEventListener('click', () => {
+    isShowingClientProjects = !isShowingClientProjects;
+    
+    // Add fade-out animation
+    projectsGrid.style.opacity = '0';
+    projectsGrid.style.transform = 'translateY(20px)';
+    
+    // Wait for fade-out animation
+    setTimeout(() => {
+      updateProjects(isShowingClientProjects ? clientProjects : personalProjects);
+      
+      // Add fade-in animation
+      projectsGrid.style.opacity = '1';
+      projectsGrid.style.transform = 'translateY(0)';
+    }, 300);
+
+    // Update button text
+    projectToggle.querySelector('span').textContent = 
+      isShowingClientProjects ? 'Switch to Personal Projects' : 'Switch to Client Projects';
+  });
+</script>
+
+<style>
+  .hover-lift {
+    transition: transform 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  #projectsGrid {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+</style>
