@@ -18,7 +18,7 @@ interface Project {
 
 const personalProjects: Project[] = [
   {
-    title: "KingTroy.Studio",
+    title: "KingTroyStudio",
     image: kingtroyStudio,
     link: "https://www.youtube.com/@KingTroy125",
     preview: "https://www.youtube.com/@KingTroy125",
@@ -221,11 +221,11 @@ let currentProjects = personalProjects;
 
   const personalProjects = [
     {
-      title: "NoteDev",
-      image: "/NoteDev.png",
-      link: "https://github.com/KingTroy125/NoteDev",
-      preview: "https://note-dev-olive.vercel.app/",
-      status: "In Development",
+      title: "kingtroyStudio",
+      image: "/0612.mp4",
+      link: "https://www.youtube.com/@KingTroy125",
+      preview: "https://www.youtube.com/@KingTroy125",
+      status: "Design Studio",
     },
     {
       title: "Fitness App: VITALMOVE",
@@ -260,12 +260,24 @@ let currentProjects = personalProjects;
           class="block hover-card"
         >
           <div class="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 mb-4">
-            <img
-              src="${project.image}"
-              alt="${project.title}"
-              class="w-full h-48 md:h-72 object-cover"
-              loading="lazy"
-            />
+            ${project.image.endsWith('.mp4') ? `
+              <video
+                src="${project.image}"
+                title="${project.title}"
+                class="w-full h-48 md:h-72 object-cover"
+                autoplay
+                loop
+                muted
+                playsinline
+              />
+            ` : `
+              <img
+                src="${project.image}"
+                alt="${project.title}"
+                class="w-full h-48 md:h-72 object-cover"
+                loading="lazy"
+              />
+            `}
           </div>
           <div class="flex items-center px-3">
             <div class="flex-grow">
