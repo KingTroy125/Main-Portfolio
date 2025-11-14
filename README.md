@@ -1,15 +1,7 @@
 # Portfolio
 
-> Developed with passion while listening to _Hurry Up Tomorrow by The Weeknd_.
-
-[![Deploy Status](https://img.shields.io/badge/Deploy-Vercel-black?style=flat&logo=vercel)](tu-url-deploy)
-
----
-
 ## **Overview**
 This portfolio showcases my work and skills, built using modern web technologies for performance and aesthetics.
-
-The component `<LetterGlitch />` was taken from [ReactBits.dev](https://www.reactbits.dev/).
 
 ## **Stack**  
 ### **Frontend**  

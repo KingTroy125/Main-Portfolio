@@ -1,6 +1,5 @@
 ---
 import SkillsList from "../React/SkillsList";
-import LetterGlitch from "../React/LetterGlitch";
 ---
 
 <section id="skills" class="py-24 border-t border-[#ffffff10]">
@@ -8,18 +7,8 @@ import LetterGlitch from "../React/LetterGlitch";
     <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">My expertise</h2>
     <h3 class="text-4xl md:text-5xl font-medium text-[var(--white)] mb-8">Skills & Technologies</h3>
 
-    <div class="flex flex-col lg:flex-row items-start gap-12">
+    <div>
       <SkillsList client:load />
-      <div class="lg:flex-1 w-full h-[292px] lg:h-full">
-        <LetterGlitch
-          client:load
-          glitchColors={["#5e4491", "#A476FF", "#241a38"]}
-          glitchSpeed={33}
-          centerVignette={false}
-          outerVignette={true}
-          smooth={true}
-        />
-      </div>
     </div>
   </div>
-</section> 
+</section>
